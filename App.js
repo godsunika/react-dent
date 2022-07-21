@@ -18,8 +18,16 @@ function App() {
           sx = {{
             position               : "relative",
             zIndex                 : 2,
-            borderBottomRightRadius: 200,
-            borderBottomLeftRadius : 200,
+            borderBottomRightRadius: {
+              xs: 80,
+              sm: 100,
+              md: 200
+            },
+            borderBottomLeftRadius : {
+              xs: 80,
+              sm: 100,
+              md: 200
+            },
             bgcolor                : '#E072A4',
             height                 : '100vh',
           }} />
@@ -36,8 +44,16 @@ function App() {
             justifyContent         : 'center',
             position               : 'relative',
             zIndex                 : 1,
-            borderBottomRightRadius: 200,
-            borderBottomLeftRadius : 200,
+            borderBottomRightRadius: {
+              xs: 80,
+              sm: 100,
+              md: 200
+            },
+            borderBottomLeftRadius : {
+              xs: 80,
+              sm: 100,
+              md: 200
+            },
             // opacity                : '50%',
             bgcolor                : '#FABC2A',
             width                  : 'auto',
