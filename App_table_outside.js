@@ -127,6 +127,7 @@ function App() {
         <Box 
           mt         = {-25}
           py         = {25}
+          px         = {10}
           alignItems = "center"
           sx         = {{
             display       : 'flex',
@@ -134,11 +135,6 @@ function App() {
             justifyContent: 'center',
             position      : 'relative',
             zIndex        : 0,
-            px         : {
-              xs: 1,
-              sm: 3,
-              md: 10
-            },
             // borderTopRightRadius  : {
             //   xs: 80,
             //   sm: 100,
@@ -169,54 +165,64 @@ function App() {
                 <Button size="large" sx={{bgcolor: "#D15523"}} variant="contained" fullWidth  onClick={getAllData}>Get Data</Button>
               </Box>
               {/* {(getResult && getResult != "loading...") ? */}
-              <Box 
-                alignItems = "center"
-                sx         = {{
-                  justifyContent: 'center',
-                  bgcolor       : 'white',
-                  // p             : 1,
-                  height        : 400,
-                  // width         : 'auto',
-                  borderTopRightRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                  borderTopLeftRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                  borderBottomRightRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                  borderBottomLeftRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                }}
-              >
-                <DataGrid
-                // style={{width: "90%"}}
-                  // getRowId={row => row.yourUniqueField}
-                  // pageSize           = {5}
-                  // rowsPerPageOptions = {[5]}
-                  // width = "100%"
-                  pagination
-                  disableColumnMenu
-                  disableSelectionOnClick
-                  // loading  = {true}
-                  getRowId = {row => row.id}
-                  rows     = {books.data}
-                  columns  = {columns}
-                />
-              </Box> 
+             
               {/* : getResult } */}
             </Container>
           </Box>
+      </Container>
+      
+      <Container  maxWidth="lg">
+        <Box 
+          alignItems = "center"
+          sx         = {{
+            display       : 'flex',
+            flexDirection : 'column',
+            justifyContent: 'center',
+            position      : 'relative',
+            zIndex        : 2,
+            // mx            : 40,
+            bgcolor       : 'white',
+            // p             : 1,
+            height        : 400,
+            width         : '100%',
+            // width         : 'auto',
+            borderTopRightRadius: {
+              xs: 8,
+              sm: 10,
+              md: 20
+            },
+            borderTopLeftRadius: {
+              xs: 8,
+              sm: 10,
+              md: 20
+            },
+            borderBottomRightRadius: {
+              xs: 8,
+              sm: 10,
+              md: 20
+            },
+            borderBottomLeftRadius: {
+              xs: 8,
+              sm: 10,
+              md: 20
+            },
+          }}
+        >
+          <DataGrid
+          style={{width: "90%"}}
+            // getRowId={row => row.yourUniqueField}
+            // pageSize           = {5}
+            // rowsPerPageOptions = {[5]}
+            // width = "100%"
+            pagination
+            disableColumnMenu
+            disableSelectionOnClick
+            // loading  = {true}
+            getRowId = {row => row.id}
+            rows     = {books.data}
+            columns  = {columns}
+          />
+        </Box> 
       </Container>
       <Container  maxWidth="lg">
         <Box 

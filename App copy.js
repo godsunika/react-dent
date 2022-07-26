@@ -19,36 +19,33 @@ function App() {
   const fortmatResponse           = (res) => {
     return JSON.stringify(res, null, 2);
   };
-  const { status, data: books, error, refetch: getAllBooks } = useQuery(
+  const { isLoading: isLoadingTutorials, refetch: getAllBooks } = useQuery(
     "query-books",
     async () => {
       return await apiClient.get("/books");
     },
-    // {
-      // enabled: false,
-      // onSuccess: (res) => {
-      //   const result = {
-      //     status : res.status + "-" + res.statusText,
-      //     headers: res.headers,
-      //     data   : res.data,
-      //   };
-      //   // console.log(JSON.parse(result.data));
-      //   setGetResult(fortmatResponse(result.data));
-      //   console.log(typeof(getResult))
-      //   console.log(getResult)
-      // },
-      // onError: (err) => {
-      //   setGetResult(fortmatResponse(err.response?.data || err));
-      // },
-    // }
+    {
+      enabled: false,
+      onSuccess: (res) => {
+        const result = {
+          status : res.status + "-" + res.statusText,
+          headers: res.headers,
+          data   : res.data,
+        };
+        // console.log(JSON.parse(result.data));
+        setGetResult(fortmatResponse(result.data));
+        console.log(typeof(getResult))
+        console.log(getResult)
+      },
+      onError: (err) => {
+        setGetResult(fortmatResponse(err.response?.data || err));
+      },
+    }
   );
-  
-  if (status === "loading") return <h1>Loading...</h1>;
-  if (status === "error") return <span>Error: {error.message}</span>;
 
-  // useEffect(() => {
-  //   if (isLoading) setGetResult("loading...");
-  // }, [isLoading]);
+  useEffect(() => {
+    if (isLoadingTutorials) setGetResult("loading...");
+  }, [isLoadingTutorials]);
 
   function getAllData() {
     try {
@@ -59,12 +56,12 @@ function App() {
   }
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 50 },
-    { field: 'title', headerName: 'Title', width: 225, sortable: true },
-    { field: 'author', headerName: 'Author', width: 225, sortable: true },
-    { field: 'category', headerName: 'Category', width: 150, sortable: true },
-    { field: 'price', headerName: 'Price', width: 150, sortable: true },
-    { field: 'stock', headerName: 'Stock', width: 150, sortable: true },
+    { field: 'id', headerName: 'ID', flex: 1 },
+    { field: 'title', headerName: 'Title', flex: 2, sortable: true },
+    { field: 'author', headerName: 'Author', flex: 2, sortable: true },
+    { field: 'category', headerName: 'Category', flex: 2, sortable: true },
+    { field: 'price', headerName: 'Price', flex: 2, sortable: true },
+    { field: 'stock', headerName: 'Stock', flex: 2, sortable: true }
     // { field: 'fullName', headerName: 'Full name', description: 'This column has a value getter and is not sortable.', sortable: false, width: 160, valueGetter: (params) =>   `${params.row.firstName || ''} ${params.row.lastName || ''}`, },
   ];
 
@@ -127,6 +124,7 @@ function App() {
         <Box 
           mt         = {-25}
           py         = {25}
+          px         = {10}
           alignItems = "center"
           sx         = {{
             display       : 'flex',
@@ -134,11 +132,6 @@ function App() {
             justifyContent: 'center',
             position      : 'relative',
             zIndex        : 0,
-            px         : {
-              xs: 1,
-              sm: 3,
-              md: 10
-            },
             // borderTopRightRadius  : {
             //   xs: 80,
             //   sm: 100,
@@ -168,52 +161,20 @@ function App() {
               <Box mt={1}>
                 <Button size="large" sx={{bgcolor: "#D15523"}} variant="contained" fullWidth  onClick={getAllData}>Get Data</Button>
               </Box>
-              {/* {(getResult && getResult != "loading...") ? */}
-              <Box 
-                alignItems = "center"
-                sx         = {{
-                  justifyContent: 'center',
-                  bgcolor       : 'white',
-                  // p             : 1,
-                  height        : 400,
-                  // width         : 'auto',
-                  borderTopRightRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                  borderTopLeftRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                  borderBottomRightRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                  borderBottomLeftRadius: {
-                    xs: 8,
-                    sm: 10,
-                    md: 20
-                  },
-                }}
-              >
-                <DataGrid
-                // style={{width: "90%"}}
-                  // getRowId={row => row.yourUniqueField}
-                  // pageSize           = {5}
-                  // rowsPerPageOptions = {[5]}
-                  // width = "100%"
-                  pagination
-                  disableColumnMenu
-                  disableSelectionOnClick
-                  // loading  = {true}
-                  getRowId = {row => row.id}
-                  rows     = {books.data}
-                  columns  = {columns}
-                />
-              </Box> 
+              {/* {(getResult && getResult != "loading...") ?           */}
+                <Box sx={{ height: 400, width: '100%' }}>
+                  <DataGrid
+                    // getRowId={row => row.yourUniqueField}
+                    // pageSize           = {5}
+                    // rowsPerPageOptions = {[5]}
+                    pagination
+                    disableColumnMenu
+                    disableSelectionOnClick
+                    getRowId = {row => row.id}
+                    rows     = {JSON.parse(getResult)}
+                    columns  = {columns}
+                  />
+                </Box> 
               {/* : getResult } */}
             </Container>
           </Box>
@@ -249,6 +210,7 @@ function App() {
           
         </Box>
       </Container>
+
     </div>
   );
 }
