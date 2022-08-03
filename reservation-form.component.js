@@ -20,8 +20,8 @@ const ReservationFormComponent = ({ control }) => {
           xs    = {12} sm = {12} md = {12} lg = {12} xl = {12}
         >
           <Controller
-            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-firstName" label = "First Name" variant = "outlined" /> }
-            name    = "formFirstName"
+            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-title" label = "Title" variant = "outlined" /> }
+            name    = "formTitle"
             control = {control}
           />
         </Grid>
@@ -30,8 +30,8 @@ const ReservationFormComponent = ({ control }) => {
           style = {{paddingLeft:0}}
           xs    = {12} sm = {12} md = {12} lg = {12} xl = {12}>
           <Controller
-            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-lastName" label = "Last Name" variant = "outlined" /> }
-            name    = "formLastNAme"
+            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-author" label = "Author" variant = "outlined" /> }
+            name    = "formAuthor"
             control = {control}
           />
         </Grid>
@@ -42,8 +42,8 @@ const ReservationFormComponent = ({ control }) => {
           xs    = {12} sm = {12} md = {12} lg = {12} xl = {12}
         >
             <Controller
-              render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-totalReserved" label = "Total Reserved" variant = "outlined" /> }
-              name    = "formTotalReserved"
+              render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-category" label = "Category" variant = "outlined" /> }
+              name    = "formCategory"
               control = {control}
             />
         </Grid>
@@ -54,8 +54,8 @@ const ReservationFormComponent = ({ control }) => {
           xs    = {12} sm = {12} md = {12} lg = {12} xl = {12}
         >
           <Controller
-            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-date" label = "Date" variant = "outlined" /> }
-            name    = "formDate"
+            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-price" label = "Price" variant = "outlined" /> }
+            name    = "formPrice"
             control = {control}
           />
         </Grid>
@@ -66,8 +66,8 @@ const ReservationFormComponent = ({ control }) => {
           xs    = {12} sm = {12} md = {12} lg = {12} xl = {12}
         >
           <Controller
-            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-time" label = "Time" variant = "outlined" /> }
-            name    = "formTime"
+            render  = {({ field }) => <TextField fullWidth {...field} sx={{m: 0.5}} id = "form-stock" label = "Stock" variant = "outlined" /> }
+            name    = "formStock"
             control = {control}
           />
         </Grid>

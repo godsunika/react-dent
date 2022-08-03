@@ -12,7 +12,7 @@ const ReservationListComponent = ({ api }) => {
   const { status, isLoading, data: books, error, refetch: getAllBooks } = useQuery(
     "query-books",
     async () => {
-      return await api.get("/books");
+      return await api.get("/api/book");
     },
     // {
       // enabled: false,
@@ -49,12 +49,12 @@ const ReservationListComponent = ({ api }) => {
   if (status === "error") return <span>Error: {error.message}</span>;
   
   const columns = [
-    { field: 'id', headerName: 'ID', width: 50 },
-    { field: 'title', headerName: 'Title', width: 225, sortable: true },
-    { field: 'author', headerName: 'Author', width: 225, sortable: true },
-    { field: 'category', headerName: 'Category', width: 150, sortable: true },
-    { field: 'price', headerName: 'Price', width: 150, sortable: true },
-    { field: 'stock', headerName: 'Stock', width: 150, sortable: true },
+    { field: '_id', headerName: 'ID', flex: 1, hide: true }, //width: 50,
+    { field: 'title', headerName: 'Title', flex: 2, sortable: true }, //width: 250,
+    { field: 'author', headerName: 'Author', flex: 1.5, sortable: true }, //width: 250,
+    { field: 'category', headerName: 'Category', flex: 1, sortable: true }, //width: 150,
+    { field: 'price', headerName: 'Price', flex: 1, sortable: true }, //width: 150,
+    { field: 'stock', headerName: 'Stock', flex: 1, sortable: true }, //width: 150,
     // { field: 'fullName', headerName: 'Full name', description: 'This column has a value getter and is not sortable.', sortable: false, width: 160, valueGetter: (params) =>   `${params.row.firstName || ''} ${params.row.lastName || ''}`, },
   ];
   
@@ -117,7 +117,7 @@ const ReservationListComponent = ({ api }) => {
               rows     = {books.data}
               columns  = {columns}
               loading  = {isLoading}
-              getRowId = {row => row.id}
+              getRowId = {row => row._id}
               pagination
               disableColumnMenu
               disableSelectionOnClick
