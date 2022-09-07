@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from '~/reportWebVitals';
 import { QueryClient, QueryClientProvider } from "react-query";
-import { StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 import '~/index.css';
 import App from '~/App';
@@ -10,12 +10,20 @@ import App from '~/App';
 const root        = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
 
+let theme = createTheme({
+  typography: {
+    fontFamily: 'sans-serif',
+  }
+});
+
+theme = responsiveFontSizes(theme);
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* <StyledEngineProvider injectFirst> */}
+      <ThemeProvider theme={theme}> 
         <App />
-      {/* </StyledEngineProvider> */}
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
